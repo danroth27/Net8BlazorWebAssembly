@@ -1,6 +1,6 @@
 ﻿@page "/fetchdata"
 @using Net8BlazorWebAssembly.Shared
-@inject HttpClient Http
+@inject IWeatherForecastService ForecastService
 
 <PageTitle>Weather forecast</PageTitle>
 
@@ -42,6 +42,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("WeatherForecast");
+        forecasts = await ForecastService.GetForecastAsync();
     }
 }

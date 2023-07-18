@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using Net8BlazorWebAssembly.Server;
+using Net8BlazorWebAssembly.Shared;
 using Host = Net8BlazorWebAssembly.Client.Host;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddRazorComponents().AddWebAssemblyComponents();
+builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
 
 var app = builder.Build();
 

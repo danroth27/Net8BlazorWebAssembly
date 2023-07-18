@@ -14,3 +14,14 @@ To upgrade an existing ASP.NET Core hosted Blazor WebAssembly app to .NET 8:
     1. Add `builder.Services.AddRazorComponents().AddWebAssemblyComponents()`.
     1. Remove `app.UseBlazorFrameworkFiles()`.
     1. Replace `MapFallbackToFile("index.html")` with `app.MapRazorComponents<Host>().AddWebAssemblyRenderMode()`.
+
+To enable prerendering:
+
+1. Update all components to support prerendering from the server ([commit](https://github.com/danroth27/Net8BlazorWebAssembly/commit/0c0d0f69b1df25232aa825cc886122a75dfbd4a2)).
+1. In *Host.razor* replace the `id=app` tag with `<App @rendermode="@RenderMode.WebAssembly" />` ([commit](https://github.com/danroth27/Net8BlazorWebAssembly/commit/27bc4c423a4653bb38818dc2d3c7a57b71921442)).
+
+Open issues:
+
+- https://github.com/dotnet/aspnetcore/issues/49448
+- https://github.com/dotnet/aspnetcore/issues/49056
+- https://github.com/dotnet/aspnetcore/issues/49313

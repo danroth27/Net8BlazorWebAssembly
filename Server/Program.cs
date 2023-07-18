@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.ResponseCompression;
+using Host = Net8BlazorWebAssembly.Client.Host;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+builder.Services.AddRazorComponents().AddWebAssemblyComponents();
 
 var app = builder.Build();
 
@@ -23,14 +25,12 @@ else
 
 app.UseHttpsRedirection();
 
-app.UseBlazorFrameworkFiles();
 app.UseStaticFiles();
 
 app.UseRouting();
 
-
 app.MapRazorPages();
 app.MapControllers();
-app.MapFallbackToFile("index.html");
+app.MapRazorComponents<Host>().AddWebAssemblyRenderMode();
 
 app.Run();

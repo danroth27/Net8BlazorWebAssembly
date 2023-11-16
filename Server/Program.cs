@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.ResponseCompression;
 using Net8BlazorWebAssembly.Server;
 using Net8BlazorWebAssembly.Shared;
 using Host = Net8BlazorWebAssembly.Client.Host;
@@ -9,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-builder.Services.AddRazorComponents().AddWebAssemblyComponents();
+builder.Services.AddRazorComponents().AddInteractiveWebAssemblyComponents();
 builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
 
 var app = builder.Build();
@@ -31,9 +30,10 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseAntiforgery();
 
 app.MapRazorPages();
 app.MapControllers();
-app.MapRazorComponents<Host>().AddWebAssemblyRenderMode();
+app.MapRazorComponents<Host>().AddInteractiveWebAssemblyRenderMode();
 
 app.Run();

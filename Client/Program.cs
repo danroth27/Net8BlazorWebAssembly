@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Net8BlazorWebAssembly.Client;
 using Net8BlazorWebAssembly.Shared;
